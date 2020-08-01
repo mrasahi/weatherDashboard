@@ -6,3 +6,4 @@
 
 // example
 // https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=1dd25ac798a84daed3b612ef4b3c9a3e
+

@@ -7,7 +7,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>Weather Dashboard</title>
 </head>
 
 <body>
@@ -26,42 +25,85 @@
                 hot
             </p>
 
-
         </header>
 
         <div class="row">
 
             <!-- left col -->
-            <div class="col-md-4">
+            <aside class="col-md-4">
                 <h1>left aside</h1>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
+
+                <form>
+                    <label for="city">Search:</label>
+                    <input type="text" name="city" placeholder="Los Angeles" id="uCity">
+                    <button class="btn btn-primary" id="search">Go</button>
+                </form>
+
+
+
+                <br>
+
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
                     esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
-                    sapiente aliquid necessitatibus?</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
+                    sapiente aliquid necessitatibus?
+                </p>
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
                     esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
-                    sapiente aliquid necessitatibus?</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
+                    sapiente aliquid necessitatibus?
+                </p>
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
                     esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
-                    sapiente aliquid necessitatibus?</p>
-            </div>
+                    sapiente aliquid necessitatibus?
+                </p>
+                
+
+                
+            </aside>
 
             <!-- right col -->
-            <div class="col-md-8">
-                <h1>header 1</h1>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
-                    esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
-                    sapiente aliquid necessitatibus?</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
-                    esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
-                    sapiente aliquid necessitatibus?</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
-                    esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
-                    sapiente aliquid necessitatibus?</p>
+            <article class="col-md-8">
+                <h1>5 Day forecast</h1>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
                     esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
                     sapiente aliquid necessitatibus?</p>
 
-            </div>
+                <section class="row">
+                    <section class="col-md-2">
+                        <h1>Mon</h1>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
+                            esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
+                            sapiente aliquid necessitatibus?</p>
+                    </section>
+                    <section class="col-md-2">
+                        <h1>Mon</h1>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
+                            esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
+                            sapiente aliquid necessitatibus?</p>
+                    </section>
+                    <section class="col-md-2">
+                        <h1>Mon</h1>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
+                            esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
+                            sapiente aliquid necessitatibus?</p>
+                    </section>
+                    <section class="col-md-2">
+                        <h1>Mon</h1>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
+                            esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
+                            sapiente aliquid necessitatibus?</p>
+                    </section>
+                    <section class="col-md-2">
+                        <h1>Mon</h1>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel! Assumenda,
+                            esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
+                            sapiente aliquid necessitatibus?</p>
+                    </section>
+                </section>
+
+            </article>
 
         </div>
 
@@ -85,6 +127,38 @@
 
     <!-- My js -->
     <script src="./assets/js/weatherapp.js"></script>
+
+
+    <script>
+
+        // Weather api
+        // `https://openweathermap.org/api`
+        // api key
+        // 204a21677e88c64a7fde4e4dce4f596a
+
+        // example
+        // `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=1dd25ac798a84daed3b612ef4b3c9a3e`
+
+        // city name
+        let city = $('#citySearch').val()
+
+        // units imperial for F
+        // $.ajax(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=204a21677e88c64a7fde4e4dce4f596a`)
+        //     .then(res => {
+        //         console.log(res)
+        //     })
+
+
+        //     // if error occurs console log
+        //     .catch(err => {
+        //         console.log(err)
+        //     })
+
+
+
+
+
+    </script>
 
 </body>
 
