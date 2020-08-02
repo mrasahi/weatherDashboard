@@ -33,7 +33,7 @@
 
                 <form>
                     <label for="city">Search:</label>
-                    <input type="text" name="city" placeholder="Los Angeles" id="city">
+                    <input type="text" name="city" placeholder="City" id="city">
                     <button class="btn btn-primary" id="search">Go</button>
                 </form>
 
@@ -64,44 +64,45 @@
             <article class="col-md-8">
                 <div class="jumbotron">
                     <h1>5 Day forecast</h1>
+                    <p></p>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel!
                         Assumenda,
                         esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
                         sapiente aliquid necessitatibus?</p>
                 </div>
 
-                <section class="row">
-                    <section class="col-md-2">
-                        <h1 id=""></h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel!
+                <section class="row" id="forecast">
+                    <section class="col-md-2" id="1">
+                        <h1 id="day1"></h1>
+                        <p id="day1weather">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel!
                             Assumenda,
                             esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
                             sapiente aliquid necessitatibus?</p>
                     </section>
-                    <section class="col-md-2">
-                        <h1 id=""></h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel!
+                    <section class="col-md-2" id="2">
+                        <h1 id="day2"></h1>
+                        <p id="day2weather">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel!
                             Assumenda,
                             esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
                             sapiente aliquid necessitatibus?</p>
                     </section>
-                    <section class="col-md-2">
-                        <h1 id=""></h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel!
+                    <section class="col-md-2" id="3">
+                        <h1 id="day3"></h1>
+                        <p id="day3weather">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel!
                             Assumenda,
                             esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
                             sapiente aliquid necessitatibus?</p>
                     </section>
-                    <section class="col-md-2">
-                        <h1 id=""></h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel!
+                    <section class="col-md-2" id="4">
+                        <h1 id="day4"></h1>
+                        <p id="day4weather">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel!
                             Assumenda,
                             esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
                             sapiente aliquid necessitatibus?</p>
                     </section>
-                    <section class="col-md-2">
-                        <h1 id=""></h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel!
+                    <section class="col-md-2" id="5">
+                        <h1 id="day5"></h1>
+                        <p id="day5weather">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti temporibus officia vel!
                             Assumenda,
                             esse velit. Qui hic corrupti quasi dolores quam aliquam, cum eos. Quidem repellendus eveniet
                             sapiente aliquid necessitatibus?</p>
@@ -109,6 +110,10 @@
                 </section>
 
             </article>
+
+            <div id="testDisplay">
+                Test stuff goes here
+            </div>
 
         </div>
 
@@ -130,59 +135,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-    <!-- My js -->
-    <script src="./assets/js/weatherapp.js"></script>
-
     <!-- Moment js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
 
-
-    <script>
-
-        // Current time with moment
-        console.log(moment().format('MMMM Do YYYY, h:mm:ss a'))
-        $('#currentTime').text(moment().format('MMMM Do YYYY, h:mm:ss a'))
-        // Updates time every 1 sec
-        setInterval(() => {
-            $('#currentTime').text(moment().format('MMMM Do YYYY, h:mm:ss a'))
-        }, 1000);
-
-        // Weather api
-        // `https://openweathermap.org/api`
-        // api key
-        // 204a21677e88c64a7fde4e4dce4f596a
-
-        // example
-        // `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=1dd25ac798a84daed3b612ef4b3c9a3e`
-
-        // city name
-
-        $('#search').click(function () {
-            event.preventDefault()
-            let city = $('#city').val()
-            console.log(city)
-            $.ajax(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=204a21677e88c64a7fde4e4dce4f596a`)
-                .then(res => {
-                    console.log(res)
-                })
-                .catch(doorstuck => {
-                    console.log(doorstuck)
-                })
-        })
-
-        // units imperial for F
-        // $.ajax(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=204a21677e88c64a7fde4e4dce4f596a`)
-        //     .then(res => {
-        //         console.log(res)
-        //     })
-
-
-        //     // if error occurs console log
-        //     .catch(err => {
-        //         console.log(err)
-        //     })
-
-    </script>
+    <!-- My js -->
+    <script src="./assets/js/weatherapp.js"></script>
 
 </body>
 
