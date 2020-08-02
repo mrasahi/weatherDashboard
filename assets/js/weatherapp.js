@@ -34,14 +34,16 @@ function forecastDisplay(city) {
                 console.log($(this)[0].weather[0].icon)
                 console.log($(this)[0].wind.speed)
                 let weatherDiv = document.createElement('div')
-                weatherDiv.classList = 'col-md-2 border border-dark text-center mx-2'
+                weatherDiv.classList = 'col-md-2 card bg-primary text-white text-center mx-2'
                 weatherDiv.innerHTML = `
-                <p>${$(this)[0].dt_txt.slice(0, 10)}</p>
-                <p>${$(this)[0].weather[0].description}</p>
+                <p class="card-title">${$(this)[0].dt_txt.slice(0, 10)}</p>
                 <img src="http://openweathermap.org/img/wn/${$(this)[0].weather[0].icon}@2x.png">
-                <p>Temp: ${$(this)[0].main.temp} °F</p>
-                <p>Humidity: ${$(this)[0].main.humidity}</p>
-                <p>Wind Speed: ${$(this)[0].wind.speed}</p>
+                <div class="card-body">
+                    <p>${$(this)[0].weather[0].description}</p>
+                    <p>Temp: ${$(this)[0].main.temp} °F</p>
+                    <p>Humidity: ${$(this)[0].main.humidity}</p>
+                    <p>Wind Speed: ${$(this)[0].wind.speed}</p>
+                </div>
                 `
                 document.getElementById('forecast').append(weatherDiv)
             }
