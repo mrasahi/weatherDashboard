@@ -23,6 +23,7 @@ if (moment().format('HH') >= 17 || (moment().format('HH') < 4)) {
 
 // API request to weather
 function forecastDisplay(city) {
+    $('#forecast').html('')
     $.ajax(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=204a21677e88c64a7fde4e4dce4f596a`)
         .then(result => {
             let forecast = result.list
