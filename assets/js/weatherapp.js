@@ -32,7 +32,7 @@ function forecastDisplay(city) {
             // Write stuff for currentDay
             $('#currentDay').html(`
         <h1>${result.city.name}</h1>
-        <p class="card-title">${moment(forecast[0].dt_txt).format("MMM Do YYYY")}</p>
+        <p class="card-title">${moment(forecast[0].dt_txt).format("MMM Do YYYY h:mm a")}</p>
         <img class="border bg-primary" src="http://openweathermap.org/img/wn/${forecast[0].weather[0].icon}@2x.png">
         <p>${forecast[0].weather[0].description}</p>
         <p>Temp: ${forecast[0].main.temp} °F</p>
@@ -48,6 +48,7 @@ function forecastDisplay(city) {
                     $(singleDay).addClass("col-md-2 card bg-primary text-center mb-2 mx-2")
                     singleDay.innerHTML = `
                              <h4>${moment($(this)[0].dt_txt).format("MMM Do YYYY")}</h4>
+                             <p>${moment($(this)[0].dt_txt).format("h:mm a")}</p>
                              <img class="card-img-top" src="http://openweathermap.org/img/wn/${$(this)[0].weather[0].icon}@2x.png">
                              <p>${$(this)[0].weather[0].description}</p>
                              <p>Temp: ${$(this)[0].main.temp} °F</p>

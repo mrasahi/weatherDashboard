@@ -4,6 +4,22 @@ Homework06 - Makoto Asahi
 
 # Summary
 
+5 Day Weather Forecast using the [OpenWeather API](https://openweathermap.org/api)
+
+Current time and day is displayed on the header
+
+Header greeting also changes depending on the time hour
+
+The user can search a City in the input box to show the weather forecast.
+
+The most recent forecast is displayed on the big box.
+
+UV Index changes color depending on its intensity.
+
+5 day forecast will always find and take the 3pm time to be consistent.
+
+User search history is logged in localStorage and displayed below the Search.
+
 
 
 ## User Story
