@@ -5,14 +5,21 @@
 // http://api.openweathermap.org/data/2.5/uvi/forecast?appid=204a21677e88c64a7fde4e4dce4f596a&lat=${lat}&lon=${lon}&cnt={cnt}
 
 
-// Current time with moment
-console.log(moment().format('MMMM Do YYYY, h:mm:ss a'))
+// Display current Time
 $('#currentTime').text(moment().format('MMMM Do YYYY, h:mm:ss a'))
 // Updates time every 1 sec
 setInterval(() => {
     $('#currentTime').text(moment().format('MMMM Do YYYY, h:mm:ss a'))
 }, 1000);
 
+// Greeting based on current hour
+if (moment().format('HH') >= 17 || (moment().format('HH') < 4)) {
+    $('#greeting').text('Good Evening')
+} else if (moment().format('HH') < 12) {
+    $('#greeting').text('Good Morning')
+} else {
+    $('#greeting').text('Good Afternoon')
+}
 
 // API request to weather
 function forecastDisplay(city) {
@@ -47,14 +54,13 @@ function forecastDisplay(city) {
                     `
                     $('#forecast').append(singleDay)
                 }
-
             })
             // UV index API
             let lat = result.city.coord.lat
             let lon = result.city.coord.lon
             $.ajax(`http://api.openweathermap.org/data/2.5/uvi/forecast?appid=204a21677e88c64a7fde4e4dce4f596a&lat=${lat}&lon=${lon}&cnt=1`)
+                // Add UV index to currentDay
                 .then(uvIndex => {
-                    // Add UV index to currentDay
                     console.log(uvIndex)
                     $('#uvIndex').append($(uvIndex)[0].value)
                     // $('#uvIndex').html('no u')
@@ -64,18 +70,18 @@ function forecastDisplay(city) {
                     // 8 - 10 Red "Very High"
                     // 11+ Pink "Extreme"
 
-                    // Round value just for color
                     let uvIndexColor = Math.floor(uvIndex[0].value)
-                    switch(uvIndexColor) {
-                        case 0: 
-                        case 1: 
-                        case 2: 
+                    // UV color change switch
+                    switch (uvIndexColor) {
+                        case 0:
+                        case 1:
+                        case 2:
                             console.log('Green')
                             $('#uvIndex').css('background-color', 'green')
                             break;
                         case 3:
                         case 4:
-                        case 5: 
+                        case 5:
                             console.log('Yellow')
                             $('#uvIndex').css('background-color', 'yellow')
                             break;
@@ -94,7 +100,7 @@ function forecastDisplay(city) {
                             console.log('Pink')
                             $('#uvIndex').css('background-color:', 'pink')
                             break;
-                        default: 
+                        default:
                             console.log('Pink')
                             $('#uvIndex').css('background-color', 'pink')
                     }
@@ -104,8 +110,6 @@ function forecastDisplay(city) {
                 .catch(uverr => {
                     console.log(uverr)
                 })
-
-
         })
         // If error occurs on weather API
         .catch(doorstuck => {
