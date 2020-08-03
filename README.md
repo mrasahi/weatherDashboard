@@ -20,7 +20,16 @@ UV Index changes color depending on its intensity.
 
 User search history is logged in localStorage and displayed below the Search.
 
+User search history localStorage will store up to 5 items.
 
+Search history on the page will show the 5 most recent searches.
+
+
+<img src="./assets/img/preview1.jpg" width = "100%">
+
+<img src="./assets/img/preview2.jpg" width = "100%">
+
+<img src="./assets/img/preview3.jpg" width = "100%">
 
 ## User Story
 

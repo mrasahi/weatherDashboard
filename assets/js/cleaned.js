@@ -167,7 +167,7 @@ $('#search').click(function () {
             if (userHistory.length >= 6) {
                 userHistory.pop()
                 localStorage.setItem('weatherapp', JSON.stringify(userHistory))
-                $('#history').remove('li', 5)
+                $('#history').children().last().remove()
             }
         })
         // If invalid city is searched, nothing happens
