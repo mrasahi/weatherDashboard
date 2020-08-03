@@ -21,6 +21,7 @@ if (moment().format('HH') >= 17 || (moment().format('HH') < 4)) {
     $('#greeting').text('Good Afternoon')
 }
 
+
 // API request to weather
 function forecastDisplay(city) {
     $('#forecast').html('')
@@ -118,6 +119,27 @@ function forecastDisplay(city) {
         })
 }
 
+// Pull History from localStorage
+$('#history').append(`
+<li class="list-group-item">no u</li>
+`)
+let userHistory = JSON.parse(localStorage.getItem('weatherapp')) || []
+
+console.log(userHistory)
+
+$(userHistory).each(function() {
+    $('#history').append(`
+    <li class="list-group-item">${this}</li>
+    `)
+})
+
+
+// History list is clickable
+$('.list-group-item').click(function () {
+    let city = $(this).text()
+    forecastDisplay(city)
+})
+
 
 // Search city button
 $('#search').click(function () {
@@ -125,11 +147,15 @@ $('#search').click(function () {
     let city = $('#city').val()
     console.log(city)
     forecastDisplay(city)
+    // localStorage.setItem('myWeatherApp', city)
+    let userHistory = JSON.parse(localStorage.getItem('weatherapp')) || []
 
-})
+    userHistory.push(city)
+  
+    localStorage.setItem('weatherapp', JSON.stringify(userHistory))
 
-// History list
-$('.list-group-item').click(function () {
-    let city = $(this).text()
-    forecastDisplay(city)
+    // Clear text input after submitting
+    $('#city').val('')
+    console.log(userHistory)
+
 })
