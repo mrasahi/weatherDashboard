@@ -12,6 +12,8 @@ setInterval(() => {
     $('#currentTime').text(moment().format('MMMM Do YYYY, h:mm:ss a'))
 }, 1000);
 
+console.log(moment().format('MMMM Do YYYY, h:mm:ss a'))
+
 // Greeting based on current hour
 if (moment().format('HH') >= 17 || (moment().format('HH') < 4)) {
     $('#greeting').text('Good Evening')
@@ -25,8 +27,8 @@ if (moment().format('HH') >= 17 || (moment().format('HH') < 4)) {
 // API request to weather
 function forecastDisplay(city) {
     $('#forecast').html('')
-    $.ajax(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=204a21677e88c64a7fde4e4dce4f596a`)
-        .then(result => {
+    // $.ajax(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=204a21677e88c64a7fde4e4dce4f596a`)
+    //     .then(result => {
             let forecast = result.list
             console.log(result)
             // Write stuff for currentDay
@@ -113,17 +115,15 @@ function forecastDisplay(city) {
                 .catch(uverr => {
                     console.log(uverr)
                 })
-        })
+        // })
         // If error occurs on weather API
         .catch(doorstuck => {
             console.log(doorstuck)
+            
         })
 }
 
 // Pull History from localStorage
-$('#history').append(`
-<li class="list-group-item">no u</li>
-`)
 let userHistory = JSON.parse(localStorage.getItem('weatherapp')) || []
 
 console.log(userHistory)
@@ -138,7 +138,15 @@ $(userHistory).each(function() {
 // History list is clickable
 $('.list-group-item').click(function () {
     let city = $(this).text()
-    forecastDisplay(city)
+    $.ajax(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=204a21677e88c64a7fde4e4dce4f596a`)
+        .then(result => {
+            forecastDisplay(city)
+        })
+        .catch(doorstuck => {
+            console.log(doorstuck)
+            
+        })
+
 })
 
 
@@ -147,13 +155,20 @@ $('#search').click(function () {
     event.preventDefault()
     let city = $('#city').val()
     console.log(city)
-    forecastDisplay(city)
+    $.ajax(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=204a21677e88c64a7fde4e4dce4f596a`)
+        .then(result => {
+        forecastDisplay(city)
+        })
+        .catch(doorstuck => {
+            console.log(doorstuck)
+        })
     // localStorage.setItem('myWeatherApp', city)
     let userHistory = JSON.parse(localStorage.getItem('weatherapp')) || []
-
     userHistory.push(city)
-  
     localStorage.setItem('weatherapp', JSON.stringify(userHistory))
+    $('#history').append(`
+        <li class="list-group-item">${city}</li>
+    `)
 
     // Clear text input after submitting
     $('#city').val('')
