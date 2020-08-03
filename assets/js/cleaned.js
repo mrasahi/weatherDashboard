@@ -17,6 +17,7 @@ if (moment().format('HH') >= 17 || (moment().format('HH') < 4)) {
 
 // Function to write forecast contents
 function forecastDisplay(result) {
+    $('#forecast').html('')
     let forecast = result.list
     console.log(result)
     // Current Day forecast
@@ -163,9 +164,10 @@ $('#search').click(function () {
                 <li class="list-group-item">${city}</li>
             `)
             // If search history is 5 or more, delete last ones
-            if (userHistory.length >= 5) {
+            if (userHistory.length >= 6) {
                 userHistory.pop()
                 localStorage.setItem('weatherapp', JSON.stringify(userHistory))
+                $('#history').remove('li', 5)
             }
         })
         // If invalid city is searched, nothing happens
