@@ -117,6 +117,20 @@ $(userHistory).each(function () {
     `)
 })
 
+
+// Display most recent search history city
+if (userHistory.length > 0) {
+    let city = userHistory[0]
+    $.ajax(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=204a21677e88c64a7fde4e4dce4f596a`)
+    .then(result => {
+        forecastDisplay(result)
+    })
+    .catch(doorstuck => {
+        console.log(doorstuck)
+    })
+}
+
+
 // History list is clickable
 $('.list-group-item').click(function () {
     let city = $(this).text()
@@ -131,6 +145,7 @@ $('.list-group-item').click(function () {
         })
 })
 
+
 // Search city button
 $('#search').click(function () {
     event.preventDefault()
@@ -142,11 +157,16 @@ $('#search').click(function () {
             forecastDisplay(result)
             // Log search history to localStorage
             let userHistory = JSON.parse(localStorage.getItem('weatherapp')) || []
-            userHistory.push(city)
+            userHistory.unshift(city)
             localStorage.setItem('weatherapp', JSON.stringify(userHistory))
-            $('#history').append(`
+            $('#history').prepend(`
                 <li class="list-group-item">${city}</li>
             `)
+            // If search history is 5 or more, delete last ones
+            if (userHistory.length >= 5) {
+                userHistory.pop()
+                localStorage.setItem('weatherapp', JSON.stringify(userHistory))
+            }
         })
         // If invalid city is searched, nothing happens
         .catch(doorstuck => {
