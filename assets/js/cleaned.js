@@ -19,7 +19,6 @@ if (moment().format('HH') >= 17 || (moment().format('HH') < 4)) {
 function forecastDisplay(result) {
     $('#forecast').html('')
     let forecast = result.list
-    console.log(result)
     // Current Day forecast
     $('#currentDay').html(`
         <h1>${result.city.name}</h1>
@@ -56,7 +55,6 @@ function forecastDisplay(result) {
     $.ajax(`http://api.openweathermap.org/data/2.5/uvi/forecast?appid=204a21677e88c64a7fde4e4dce4f596a&lat=${lat}&lon=${lon}&cnt=1`)
         // Add UV index to currentDay
         .then(uvIndex => {
-            console.log(uvIndex)
             $('#uvIndex').append($(uvIndex)[0].value)
             // $('#uvIndex').html('no u')
             // 0 - 2 "Low" Green
@@ -71,32 +69,26 @@ function forecastDisplay(result) {
                 case 0:
                 case 1:
                 case 2:
-                    console.log('Green')
                     $('#uvIndex').css('background-color', 'green')
                     break;
                 case 3:
                 case 4:
                 case 5:
-                    console.log('Yellow')
                     $('#uvIndex').css('background-color', 'yellow')
                     break;
                 case 6:
                 case 7:
-                    console.log('Orange')
                     $('#uvIndex').css('background-color', 'orange')
                     break;
                 case 8:
                 case 9:
                 case 10:
-                    console.log('Red')
                     $('#uvIndex').css('background-color', 'red')
                     break;
                 case 11:
-                    console.log('Pink')
                     $('#uvIndex').css('background-color:', 'pink')
                     break;
                 default:
-                    console.log('Pink')
                     $('#uvIndex').css('background-color', 'pink')
             }
         })
@@ -110,7 +102,6 @@ function forecastDisplay(result) {
 
 // Pull History from localStorage
 let userHistory = JSON.parse(localStorage.getItem('weatherapp')) || []
-console.log(userHistory)
 // Writes history in the list
 $(userHistory).each(function () {
     $('#history').append(`
@@ -151,7 +142,6 @@ $('.list-group-item').click(function () {
 $('#search').click(function () {
     event.preventDefault()
     let city = $('#city').val()
-    console.log(city)
     // Runs Weather API
     $.ajax(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=204a21677e88c64a7fde4e4dce4f596a`)
         .then(result => {
@@ -177,5 +167,4 @@ $('#search').click(function () {
 
     // Clear text input after submitting
     $('#city').val('')
-    console.log(userHistory)
 })
