@@ -2,6 +2,10 @@
 
 Homework06 - Makoto Asahi
 
+Deployed Link:
+
+https://mrasahi.github.io/weatherDashboard/
+
 # Summary
 
 5 Day Weather Forecast using the [OpenWeather API](https://openweathermap.org/api)
